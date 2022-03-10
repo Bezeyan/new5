@@ -1,0 +1,172 @@
+version: "3"
+services:
+  eureka:
+    build: eureke_server/.
+    container_name: eureka-server
+    networks:
+      - eureka
+    ports:
+      - '8761:8761'
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/var/lib/postgresql/data
+    networks:
+      - mongo
+
+  postgres:
+    image: postgres
+    container_name: postgresdb
+    restart: always
+    ports:
+        - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    networks:
+      - postgres
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+
+  chat-service:
+    depends_on:
+      - postgres
+      - eureka
+    build: chat_service/.
+    container_name: chat_service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+      - spring.datasource.url=jdbc:postgresql://postgres:5432/chatdb
+    ports:
+      - '8083:8083'
+    networks:
+      - postgres
+      - eureka
+
+  email-service:
+    depends_on:
+      - eureka
+    build: email_service/.
+    ports:
+      - '8082:8082'
+    container_name: email_service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+    networks:
+      - eureka
+
+  friend-service:
+    depends_on:
+      - postgres
+      - eureka
+    build: friend_service/.
+    container_name: friend_service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+      - spring.datasource.url=jdbc:postgresql://postgres:5432/frienddb
+    ports:
+      - '8542:8542'
+    networks:
+      - postgres
+      - eureka
+
+  login-service:
+    depends_on:
+      - postgres
+      - eureka
+    build: login_server/.
+    container_name: login_server
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+      - spring.datasource.url=jdbc:postgresql://postgres:5432/accountdb
+    ports:
+      - '8000:8000'
+    networks:
+      - postgres
+      - eureka
+
+  profile_service:
+    depends_on:
+      - mongo
+      - eureka
+    build: profile_service/.
+    container_name: profile-service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+      - spring.data.mongodb.uri=mongodb://mongo:27017/profiles
+    ports:
+      - '8085:8085'
+    networks:
+      - mongo
+      - eureka
+
+  media_storage:
+    depends_on:
+      - mongo
+      - eureka
+    build: media_storage/.
+    container_name: media_storage
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+      - spring.data.mongodb.uri=mongodb://mongo:27017/storage
+    ports:
+      - '8081:8081'
+    networks:
+      - mongo
+      - eureka
+
+  notification_service:
+    depends_on:
+      - eureka
+    build: notification_service/.
+    container_name: notification_service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+    ports:
+      - '8086:8085'
+    networks:
+      - eureka
+
+  payments-service:
+    depends_on:
+      - eureka
+    build: payments_service/.
+    container_name: payments_service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+    ports:
+      - '8061:8061'
+    networks:
+      - eureka
+
+  spring-gateway:
+    depends_on:
+      - eureka
+    build: spring-gateway/.
+    container_name: spring-gateway
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+    ports:
+      - '8762:8762'
+    networks:
+      - eureka
+
+networks:
+  eureka:
+    name: eureka-net
+
+  mongo:
+    name: mongo-net
+
+  postgres:
+    name: postgres-net
+
+volumes:
+  mongo-data:
+  postgresql-data:
+

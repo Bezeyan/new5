@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: elskemp
+
+#  kafka:
+#    consumer:
+#      configuration:
+#        value:
+#          deserializer: org.springframework.kafka.support.serializer.JsonDeserializer

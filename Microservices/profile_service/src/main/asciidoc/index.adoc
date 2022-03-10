@@ -1,0 +1,61 @@
+=== Get All Profiles
+
+==== Sample Request
+include::{snippets}/getAllProfiles/curl-request.adoc[]
+
+==== Sample Response
+include::{snippets}/getAllProfiles/http-response.adoc[]
+
+
+=== Get Profile By Account Id
+
+==== Sample request
+include::{snippets}/getProfileByAccountId/curl-request.adoc[]
+
+==== Sample response
+include::{snippets}/getProfileByAccountId/http-response.adoc[]
+
+
+=== Create Profile
+
+==== Sample request
+include::{snippets}/createProfile/curl-request.adoc[]
+
+==== Sample response
+include::{snippets}/createProfile/http-response.adoc[]
+
+
+=== Update Profile
+
+==== Sample request
+include::{snippets}/updateProfile/curl-request.adoc[]
+
+==== Sample response
+include::{snippets}/updateProfile/http-response.adoc[]
+
+
+=== Delete Profile
+
+==== Sample request
+include::{snippets}/deleteProfile/curl-request.adoc[]
+
+==== Sample response
+include::{snippets}/deleteProfile/http-response.adoc[]
+
+
+=== Get Nearby Profiles
+
+==== Sample request
+include::{snippets}/getNearbyProfiles/curl-request.adoc[]
+
+==== Sample response
+include::{snippets}/getNearbyProfiles/http-response.adoc[]
+
+
+=== Add To Like Or Dodge List
+
+==== Sample request
+include::{snippets}/addToLikeOrDodgeList/curl-request.adoc[]
+
+==== Sample response
+include::{snippets}/addToLikeOrDodgeList/http-response.adoc[]

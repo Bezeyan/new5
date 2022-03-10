@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: media-storage
+  data:
+    mongodb:
+      database: storage
+      uri: mongodb://localhost:27017/storage
+  sleuth:
+    sampler:
+      probability: 1.0
+  servlet:
+    multipart:
+      max-file-size: 10MB

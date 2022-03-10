@@ -1,0 +1,22 @@
+
+server:
+  port: 8085
+spring:
+  application:
+    name: profile-service
+  data:
+    mongodb:
+      database: profiles
+      uri: mongodb://localhost:27017/profiles
+  sleuth:
+    sampler:
+      probability: 1.0
+  flyway:
+    enabled: true
+
+nearbyProfileSearchRadiusDefault:
+  1000
+nearbyRandomProfileSearchRadius:
+  3000
+radiusOfEarth:
+  6371000

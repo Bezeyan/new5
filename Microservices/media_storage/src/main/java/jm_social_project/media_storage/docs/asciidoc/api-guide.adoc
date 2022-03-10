@@ -1,0 +1,23 @@
+=== Get All Content
+
+==== Sample Request
+include::{snippets}/getAllContent/curl-request.adoc[]
+
+=== Sample Response
+include::{snippets}/getAllContent/http-response.adoc[]
+
+=== Upload File
+
+=== Sample Request
+include::{snippets}/uploadPhoto/curl-request.adoc[]
+
+=== Sample Response
+include::{snippets}/uploadPhoto/http-response.adoc[]
+
+=== Upload Video
+
+=== Sample Request
+include::{snippets}/uploadVideo/curl-request.adoc[]
+
+=== Sample Response
+include::{snippets}/uploadVideo/http-response.adoc[]

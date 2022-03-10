@@ -1,0 +1,28 @@
+server:
+  port: 8762
+spring:
+  application:
+    name: proxy
+  cloud:
+    gateway:
+      routes:
+        - id: profile-service
+          uri: lb://profile-service
+          predicates:
+            - Path=/profiles/**
+eureka:
+  client:
+    service-url:
+      defaultZone:
+        http://localhost:8761/eureka/
+
+
+jwt.secret:
+  SuperSecret
+
+login.service.name:
+  login-service
+
+chat.service.name:
+  chat-service
+

@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: elskemp
+#      kafka:
+#        producer:
+#          configuration:
+#            value:
+#              serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+
+
+
